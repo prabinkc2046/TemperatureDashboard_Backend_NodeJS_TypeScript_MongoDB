@@ -5,10 +5,12 @@ import dotenv from 'dotenv';
 // module import
 import { connectDB, dbEvent } from './database';
 import { loadAndInsertData } from './utils/dataImporter';
-import temperatureRoutes from './routes/api/temperature';
+
+// import routes
+import listAllTemperatureRoutes from './routes/listAllTemperature/temperature';
+import filterAllTemperatureRoutes from './routes/filterByStartEndDateAndLocation/filteredTemperature';
 
 // Loading  env variables
-
 dotenv.config();
 const app = express();
 
@@ -21,8 +23,8 @@ app.use(express.json());
 const PORT = process.env.PORT || 3001;
 
 // Routes
-app.use('/api/temperature', temperatureRoutes);
-
+app.use('/api/temperature', listAllTemperatureRoutes);
+app.use('/api/temperature/sortedbydate', filterAllTemperatureRoutes);
 // Event listener
 dbEvent.on('connected', async () => {
   console.log('Event: MongoDB connection successful!');

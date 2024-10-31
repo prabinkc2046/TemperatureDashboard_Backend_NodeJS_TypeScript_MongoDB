@@ -26,3 +26,16 @@ export interface LocationDocument extends Document {
   };
   dailyTemperatures: DailyTemperature[];
 }
+
+export interface FilteredDateRangeDailyTemperatureData {
+  location: string;
+  date: Date;
+  min: number;
+  max: number;
+}
+
+export interface QueryParamsFilteredDateRange {
+  startDate?: string;
+  endDate?: string;
+  location?: string;
+}

@@ -1,5 +1,6 @@
 import mongoose, { Schema, Document } from 'mongoose';
 import { LocationDocument } from '../types/temperature';
+
 // Define the schema
 const TemperatureSchema: Schema = new Schema({
   location: {
