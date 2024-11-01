@@ -1,6 +1,6 @@
 // Update the cache for query-based (filtered) data
 import { createCacheKey } from '../createCache';
-import { fetchData } from '../../databaseQuery/fetchTemperatureDataFilteredByLastNDays';
+import { fetchData } from '../../databaseQuery/fetchData';
 import { cache } from '../cacheState';
 import { transformDataForPlotting } from '../../transform/transformToPlotReadyData';
 import { QueryParams } from '../../types/temperature';

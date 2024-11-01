@@ -29,7 +29,7 @@ src/
 ├── config
 │   └── constants.ts
 ├── databaseQuery
-│   └── fetchTemperatureDataFilteredByLastNDays.ts
+│   └── fetchData.ts
 ├── database.ts
 ├── events
 │   └── handleDatabaseConnection.ts
@@ -48,7 +48,6 @@ src/
     ├── calculateStartAndEndDate.ts
     ├── dataImporter.ts
     └── temperatureData.json
-
 ```
 
 ## Installation
@@ -56,8 +55,8 @@ src/
 ### Clone the repository:
 
 ```bash
-git clone https://github.com/your-repo/temperature-api.git
-cd temperature-api
+git clone https://github.com/prabinkc2046/TemperatureDashboard_Backend_NodeJS_TypeScript_MongoDB.git
+cd TemperatureDashboard_Backend_NodeJS_TypeScript_MongoDB
 ```
 
 ### Install dependencies:

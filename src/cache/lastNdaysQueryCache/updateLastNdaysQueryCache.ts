@@ -1,6 +1,6 @@
 import { QueryParams } from '../../types/temperature';
 import { createCacheKey } from '../createCache';
-import { fetchData } from '../../databaseQuery/fetchTemperatureDataFilteredByLastNDays';
+import { fetchData } from '../../databaseQuery/fetchData';
 import { transformDataForPlotting } from '../../transform/transformToPlotReadyData';
 import { cache } from '../cacheState';
 
