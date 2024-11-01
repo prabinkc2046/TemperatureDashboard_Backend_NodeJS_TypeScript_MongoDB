@@ -1,30 +1,21 @@
 import { Router, Request, Response } from 'express';
-import TemperatureModel from '../../model/temperature';
-import {
-  TransformedData,
-  QueryParamsFilteredDateRange,
-} from '../../types/temperature';
-import transformFilteredDateRangeTemperatureData from '../../transform/transformData';
-import { getCacheData } from '../../cache/temperatureCache';
-
+import TemperatureModel from '../models/dailyTemperatureByLocationModel';
+import { QueryParams } from '../types/temperature';
+import { getQueryCacheData } from '../cache/queryByLastAndEndDate/getQueryCachedData';
 const router = Router();
 
 // Route to fetch temperature data based on location and date range
 router.get(
   '/',
-  async (
-    req: Request<{}, {}, {}, QueryParamsFilteredDateRange>,
-    res: Response
-  ) => {
+  async (req: Request<{}, {}, {}, QueryParams>, res: Response) => {
     const { startDate, endDate, location } = req.query;
 
     try {
-      const data: TransformedData[] | undefined = await getCacheData({
+      const data = await getQueryCacheData({
         startDate,
         endDate,
         location,
       });
-
       if (data) {
         res.status(200).json(data);
         return;
@@ -39,4 +30,3 @@ router.get(
 );
 
 export default router;
-// Updating the transformData function to use the defined return type

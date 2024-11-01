@@ -1,13 +1,5 @@
 import mongoose, { Document } from 'mongoose';
 
-export interface TransformedData {
-  location: string;
-  date: string;
-  min: number[];
-  max: number[];
-  avg?: number;
-}
-
 // Define TypeScript interfaces for the schema
 interface TemperatureRange {
   min: number;
@@ -34,8 +26,15 @@ export interface FilteredDateRangeDailyTemperatureData {
   max: number;
 }
 
-export interface QueryParamsFilteredDateRange {
+export interface QueryParams {
   startDate?: string;
   endDate?: string;
   location?: string;
+}
+
+export interface TemperatureDataFilteredByLastNdays {
+  location: string;
+  date: Date;
+  min: number;
+  max: number;
 }

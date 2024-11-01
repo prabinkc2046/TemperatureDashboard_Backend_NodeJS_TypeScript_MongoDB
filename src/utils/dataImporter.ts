@@ -1,4 +1,4 @@
-import TemperatureModel from '../model/temperature';
+import TemperatureModel from '../models/dailyTemperatureByLocationModel';
 import { LocationDocument } from '../types/temperature';
 import path from 'path';
 import fs from 'fs';
