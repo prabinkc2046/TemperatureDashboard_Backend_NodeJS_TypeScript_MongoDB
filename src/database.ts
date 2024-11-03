@@ -31,5 +31,4 @@ const connectDB = async (retry = MAX_RETRIES) => {
   }
 };
 
-connectDB();
 export { connectDB, dbEvent };

@@ -1,6 +1,7 @@
 import { dbEvent } from '../database';
 import { loadAndInsertData } from '../utils/dataImporter';
 import { Application } from 'express';
+import { connectDB } from '../database';
 const handleDbConnection = (app: Application, PORT: string | 3001) => {
   // Event listener
   dbEvent.on('connected', async () => {
