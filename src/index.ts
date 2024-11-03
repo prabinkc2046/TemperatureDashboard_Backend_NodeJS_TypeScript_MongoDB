@@ -3,7 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 
 // module import
-import { connectDB, dbEvent } from './database';
+import { connectDB } from './database';
 import handleDbConnection from './events/handleDatabaseConnection';
 
 // import routes
@@ -16,7 +16,21 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // setting up middle ware
-app.use(cors({ origin: process.env.ALLOWED_ORIGIN }));
+const allowedOrigins = new Set((process.env.ALLOWED_ORIGINS || '*').split(','));
+console.log('allowed origins', allowedOrigins);
+const corsOptions = {
+  origin: (
+    origin: string | undefined,
+    callback: (err: Error | null, allow?: boolean) => void
+  ) => {
+    if (!origin || allowedOrigins.has(origin)) {
+      callback(null, true);
+    } else {
+      callback(null, false);
+    }
+  },
+};
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // Routes

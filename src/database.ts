@@ -10,7 +10,11 @@ const dbEvent = new EventEmitter();
 
 const connectDB = async (retry = MAX_RETRIES) => {
   try {
-    const conn = await mongoose.connect(process.env.MONGODB_URI as string);
+    console.log('URI string', process.env.MONGODB_URI);
+    const conn = await mongoose.connect(process.env.MONGODB_URI as string, {
+      socketTimeoutMS: 45000,
+      connectTimeoutMS: 45000,
+    });
     // Emit 'connected' event on successful connection
     dbEvent.emit('connected');
   } catch (error) {
@@ -27,4 +31,5 @@ const connectDB = async (retry = MAX_RETRIES) => {
   }
 };
 
+connectDB();
 export { connectDB, dbEvent };

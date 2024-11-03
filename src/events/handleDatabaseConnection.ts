@@ -1,12 +1,11 @@
 import { dbEvent } from '../database';
 import { loadAndInsertData } from '../utils/dataImporter';
 import { Application } from 'express';
-
 const handleDbConnection = (app: Application, PORT: string | 3001) => {
   // Event listener
   dbEvent.on('connected', async () => {
     console.log('Event: MongoDB connection successful!');
-    //   await loadAndInsertData();
+    // await loadAndInsertData();
     app.listen(PORT, () => {
       console.log(`Server is running on http://localhost:${PORT}`);
     });
