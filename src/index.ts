@@ -10,14 +10,15 @@ import handleDbConnection from './events/handleDatabaseConnection';
 import queryAll from './routes/queryAll';
 import queryByStartNEndDate from './routes/queryByStartNEndDateRoutes';
 import queryByLastNdays from './routes/queryByLastNdays';
+
 // Loading  env variables
 dotenv.config();
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT: number = process.env.PORT ? parseInt(process.env.PORT, 10) : 3001;
+const HOST: string = process.env.HOST || '0.0.0.0'; // Default to listen on all interfaces
 
 // setting up middle ware
 const allowedOrigins = new Set((process.env.ALLOWED_ORIGINS || '*').split(','));
-console.log('allowed origins', allowedOrigins);
 const corsOptions = {
   origin: (
     origin: string | undefined,
@@ -39,7 +40,7 @@ app.use('/api/temperature/range', queryByStartNEndDate);
 app.use('/api/temperature/last', queryByLastNdays);
 
 // database connection events
-handleDbConnection(app, PORT);
+handleDbConnection(app, PORT, HOST);
 
 // Attemp to connect to mongodb
 connectDB();
