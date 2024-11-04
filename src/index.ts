@@ -31,7 +31,7 @@ const corsOptions = {
     }
   },
 };
-app.use(cors(corsOptions));
+app.use(cors({origin: true}));
 app.use(express.json());
 
 // Routes
